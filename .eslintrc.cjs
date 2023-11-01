@@ -22,6 +22,7 @@ module.exports = {
       {
         singleQuote: true,
         parser: 'flow',
+        trailingComma: 'es5',
       },
     ],
   },
