@@ -55,6 +55,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.content-wrapper {
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 24px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

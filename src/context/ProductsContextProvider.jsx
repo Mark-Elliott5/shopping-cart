@@ -10,8 +10,16 @@ import {
 const ProductsContext = createContext();
 
 function ProductsContextProvider({ children }) {
-  const { data: allProducts } = useAllProducts();
-  const { data: allCategories } = useAllCategories();
+  const {
+    data: allProducts,
+    isLoading: allProductsIsLoading,
+    isError: allProductsIsError,
+  } = useAllProducts();
+  const {
+    data: allCategories,
+    isLoading: allCategoriesIsLoading,
+    isError: allCategoriesIsError,
+  } = useAllCategories();
 
   const dynamicData = useInCategory(allCategories || []);
   const dataArray = dynamicData?.map((result) => result.data);
@@ -23,7 +31,6 @@ function ProductsContextProvider({ children }) {
     : null;
 
   const { productPaneData, setProductPaneData } = useState(allProducts);
-  const { categories } = useState(allCategories);
 
   function updateProducts(input) {
     setProductPaneData(input);
@@ -38,8 +45,12 @@ function ProductsContextProvider({ children }) {
       value={{
         updateProducts,
         displayProductsInCategory,
-        categories,
         productPaneData,
+        allProductsIsLoading,
+        allProductsIsError,
+        allCategories,
+        allCategoriesIsLoading,
+        allCategoriesIsError,
       }}
     >
       {children}
