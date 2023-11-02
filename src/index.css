@@ -25,10 +25,16 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  /* display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100vh; */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 h1 {
@@ -55,10 +61,66 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 24px;
+  gap: 24px;
+  margin: 12px;
+  padding: 0;
+  height: 100%;
+  height: 100vh;
+  height: 100dvh;
+}
+
 .content-wrapper {
   border: 1px solid white;
   border-radius: 12px;
   padding: 24px;
+}
+
+#products-wrapper {
+  display: grid;
+  grid-template-columns: fit-content(25%) fit-content(25%) fit-content(25%) fit-content(25%);
+  grid-auto-rows: 1fr;
+  height: 90vh;
+  /* gap: 116px; */
+  overflow: scroll;
+  column-gap: 2%;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 500px;
+}
+
+.product > * {
+  font-size: 14px;
+  text-wrap: balance;
+}
+
+.product-image-wrapper {
+  height: 230px;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.rating-wrapper {
+}
+
+.star {
+  height: 0.85em;
 }
 
 @media (prefers-color-scheme: light) {

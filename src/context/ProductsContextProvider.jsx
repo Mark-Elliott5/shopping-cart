@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -30,20 +30,26 @@ function ProductsContextProvider({ children }) {
       }, {})
     : null;
 
-  const { productPaneData, setProductPaneData } = useState(allProducts);
+  const [productPaneData, setProductPaneData] = useState([]);
+  console.log(productPaneData);
 
-  function updateProducts(input) {
-    setProductPaneData(input);
-  }
+  // function updateProducts(input) {
+  //   setProductPaneData(input);
+  // }
 
   function displayProductsInCategory(category) {
     setProductPaneData(categoryProducts[category]);
   }
 
+  useEffect(() => {
+    if (allProducts) {
+      setProductPaneData(allProducts);
+    }
+  }, [allProducts]);
+
   return (
     <ProductsContext.Provider
       value={{
-        updateProducts,
         displayProductsInCategory,
         productPaneData,
         allProductsIsLoading,
