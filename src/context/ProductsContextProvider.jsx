@@ -28,10 +28,9 @@ function ProductsContextProvider({ children }) {
         obj[`${allCategories[index]}`] = data;
         return obj;
       }, {})
-    : null;
+    : undefined;
 
   const [productPaneData, setProductPaneData] = useState([]);
-  console.log(productPaneData);
 
   // function updateProducts(input) {
   //   setProductPaneData(input);

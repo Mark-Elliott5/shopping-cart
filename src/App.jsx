@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import Searchbar from './components/Searchbar';
 import Categories from './components/Categories';
-import Products from './components/Products';
+import ProductsPane from './components/ProductsPane';
 import { ProductsContextProvider } from './context/ProductsContextProvider';
 
 const queryClient = new QueryClient();
@@ -13,7 +13,7 @@ function App() {
         <ProductsContextProvider>
           {/* <Searchbar /> */}
           <Categories />
-          <Products />
+          <ProductsPane />
         </ProductsContextProvider>
       </QueryClientProvider>
     </>
