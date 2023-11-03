@@ -50,7 +50,7 @@ function Product({ description, id, image, price, rating, title }) {
           description={description}
           id={id}
           image={image}
-          price={price.toFixed(2)}
+          price={price}
           rating={rating}
           title={title}
           handleClose={handlePopupClose}

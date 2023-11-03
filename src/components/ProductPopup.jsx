@@ -39,7 +39,7 @@ function ProductPopup({
           {` `}({rating.count})
         </span>
         <span className="product-title">{title}</span>
-        <span className="product-price">${price}</span>
+        <span className="product-price">${price.toFixed(2)}</span>
         <p className="description">{description}</p>
         <button
           onClick={(e) => {

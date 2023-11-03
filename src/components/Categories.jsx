@@ -19,6 +19,7 @@ function Categories() {
 
   return (
     <div id="categories-wrapper" className="content-wrapper">
+      <p id="categories-title">Categories</p>
       <ul id="categories">
         {isLoading
           ? loadingHTML
