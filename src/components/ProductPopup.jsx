@@ -15,18 +15,28 @@ function ProductPopup({
     <div
       className="product-popup-blocker"
       onClick={(e) => {
-        e.stopPropagation;
+        e.stopPropagation();
         handleClose();
       }}
     >
-      <div className="product-popup">
+      <div className="product-popup" onClick={(e) => e.stopPropagation()}>
         <div className="product-image-wrapper">
           <img src={image} className="product-image" alt={title} />
         </div>
         <span className="rating-wrapper">
           {rating.rate}
           {` `}
-          <img src={starSVG} className="star" alt="star" />({rating.count})
+          <span
+            className="star-meter"
+            style={{ width: `calc((${rating.rate}/5)*55.975px)` }}
+          >
+            <img src={starSVG} className="star" alt="star" />
+            <img src={starSVG} className="star" alt="star" />
+            <img src={starSVG} className="star" alt="star" />
+            <img src={starSVG} className="star" alt="star" />
+            <img src={starSVG} className="star" alt="star" />
+          </span>
+          {` `}({rating.count})
         </span>
         <span>{title}</span>
         <span>${price}</span>

@@ -16,16 +16,30 @@ function Product({ description, id, image, price, rating, title }) {
 
   return (
     <div className="product" onClick={handleClick}>
-      <div className="product-image-wrapper">
-        <img src={image} className="product-image" alt={title} />
+      <div className="product-flex-divider">
+        <div className="product-image-wrapper">
+          <img src={image} className="product-image" alt={title} />
+        </div>
       </div>
-      <span className="rating-wrapper">
-        {rating.rate}
-        {` `}
-        <img src={starSVG} className="star" alt="star" />({rating.count})
-      </span>
-      <span className="product-title">{title}</span>
-      <span>${price}</span>
+      <div className="product-flex-divider span-wrapper">
+        <span className="rating-wrapper">
+          {rating.rate}
+          {` `}
+          <span
+            className="star-meter"
+            style={{ width: `calc((${rating.rate}/5)*55.975px)` }}
+          >
+            <img src={starSVG} className="star" alt="star" />
+            <img src={starSVG} className="star" alt="star" />
+            <img src={starSVG} className="star" alt="star" />
+            <img src={starSVG} className="star" alt="star" />
+            <img src={starSVG} className="star" alt="star" />
+          </span>
+          {` `}({rating.count})
+        </span>
+        <span className="product-title">{title}</span>
+        <span>${price}</span>
+      </div>
       {showPopup && (
         <ProductPopup
           description={description}

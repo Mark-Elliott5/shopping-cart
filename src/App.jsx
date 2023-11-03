@@ -4,7 +4,13 @@ import Categories from './components/Categories';
 import ProductsPane from './components/ProductsPane';
 import { ProductsContextProvider } from './context/ProductsContextProvider';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 1000 * 60 * 60,
+    },
+  },
+});
 
 function App() {
   return (

@@ -33,15 +33,23 @@ async function getInCategory(category) {
 }
 
 const useAllProducts = () =>
-  useQuery({ queryKey: ['allProducts'], queryFn: getAllProducts });
+  useQuery({
+    queryKey: ['allProducts'],
+    queryFn: getAllProducts,
+    staleTime: 100 * 1000,
+  });
 const useAllCategories = () =>
-  useQuery({ queryKey: ['allCategories'], queryFn: getAllCategories });
+  useQuery({
+    queryKey: ['allCategories'],
+    queryFn: getAllCategories,
+    staleTime: 100 * 1000,
+  });
 const useInCategory = (categories) =>
   useQueries({
     queries: categories.map((category) => ({
       queryKey: ['get', `${category}Products`],
       queryFn: getInCategory(category),
-      staleTime: Infinity,
+      staleTime: 100 * 1000,
     })),
   });
 
