@@ -6,6 +6,7 @@ import {
   useAllCategories,
   useInCategory,
 } from '../fetchFunctions';
+import Fuse from 'fuse.js';
 
 const ProductsContext = createContext();
 
@@ -40,6 +41,24 @@ function ProductsContextProvider({ children }) {
     setProductPaneData(categoryProducts[category]);
   }
 
+  function searchProducts(query) {
+    if (query.trim() === '') {
+      setProductPaneData(allProducts);
+      return;
+    }
+    const fuseOptions = {
+      minMatchCharLength: 2,
+      threshold: 0.4,
+      keys: ['title', 'description'],
+    };
+    const fuse = new Fuse(allProducts, fuseOptions);
+    const searchResults = fuse.search(query);
+    const products = searchResults.map((result) => {
+      return result.item;
+    });
+    setProductPaneData(products);
+  }
+
   useEffect(() => {
     if (allProducts) {
       setProductPaneData(allProducts);
@@ -50,7 +69,9 @@ function ProductsContextProvider({ children }) {
     <ProductsContext.Provider
       value={{
         displayProductsInCategory,
+        searchProducts,
         productPaneData,
+        allProducts,
         allProductsIsLoading,
         allProductsIsError,
         allCategories,

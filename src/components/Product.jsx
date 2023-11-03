@@ -61,7 +61,6 @@ function Product({ description, id, image, price, rating, title }) {
 }
 
 Product.propTypes = {
-  category: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
