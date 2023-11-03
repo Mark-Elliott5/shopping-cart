@@ -38,10 +38,17 @@ function ProductPopup({
           </span>
           {` `}({rating.count})
         </span>
-        <span>{title}</span>
-        <span>${price}</span>
+        <span className="product-title">{title}</span>
+        <span className="product-price">${price}</span>
         <p className="description">{description}</p>
-        <button onClick={addToCart(id)}>Add to cart</button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            addToCart(id);
+          }}
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   );
