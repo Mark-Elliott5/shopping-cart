@@ -38,14 +38,14 @@ function Product({ description, id, image, price, rating, title }) {
           {` `}({rating.count})
         </span>
         <span className="product-title">{title}</span>
-        <span>${price}</span>
+        <span>${price.toFixed(2)}</span>
       </div>
       {showPopup && (
         <ProductPopup
           description={description}
           id={id}
           image={image}
-          price={price}
+          price={price.toFixed(2)}
           rating={rating}
           title={title}
           handleClose={handlePopupClose}
