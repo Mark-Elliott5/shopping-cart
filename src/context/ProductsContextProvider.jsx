@@ -23,19 +23,13 @@ function ProductsContextProvider({ children }) {
   } = useAllCategories();
 
   const dynamicData = useInCategory(allCategories || []);
-  const dataArray = dynamicData?.map((result) => result.data);
-  const categoryProducts = dataArray
-    ? dataArray.reduce((obj, data, index) => {
-        obj[`${allCategories[index]}`] = data;
-        return obj;
-      }, {})
-    : undefined;
+  const dataArray = dynamicData.map((result) => result.data);
+  const categoryProducts = dataArray.reduce((obj, data, index) => {
+    obj[`${allCategories[index]}`] = data;
+    return obj;
+  }, {});
 
   const [productPaneData, setProductPaneData] = useState([]);
-
-  // function updateProducts(input) {
-  //   setProductPaneData(input);
-  // }
 
   function displayProductsInCategory(category) {
     setProductPaneData(categoryProducts[category]);

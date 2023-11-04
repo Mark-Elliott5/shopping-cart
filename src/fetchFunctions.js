@@ -44,13 +44,14 @@ const useAllCategories = () =>
     queryFn: getAllCategories,
     staleTime: 100 * 1000,
   });
-const useInCategory = (categories) =>
-  useQueries({
+const useInCategory = (categories) => {
+  return useQueries({
     queries: categories.map((category) => ({
-      queryKey: ['get', `${category}Products`],
-      queryFn: getInCategory(category),
+      queryKey: ['get', category],
+      queryFn: () => getInCategory(category),
       staleTime: 100 * 1000,
     })),
   });
+};
 
 export { useAllProducts, useAllCategories, useInCategory };

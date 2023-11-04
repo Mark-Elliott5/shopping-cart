@@ -7,6 +7,7 @@ function Categories() {
     allCategories,
     allCategoriesIsLoading: isLoading,
     allCategoriesIsError: isError,
+    displayProductsInCategory,
   } = useContext(ProductsContext);
   const categoriesWithKeys =
     allCategories?.map((category) => ({
@@ -26,7 +27,11 @@ function Categories() {
           : isError
           ? errorHTML
           : categoriesWithKeys.map(({ name, key }) => (
-              <li key={key} className="category">
+              <li
+                key={key}
+                className="category"
+                onClick={() => displayProductsInCategory(name)}
+              >
                 {name}
               </li>
             ))}

@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { ProductsContext } from '../context/ProductsContextProvider';
-import PropTypes from 'prop-types';
 // import searchSVG from '../assets/search.svg';
 
 function Searchbar() {
@@ -11,9 +10,7 @@ function Searchbar() {
       id="search-form"
       onSubmit={(e) => {
         e.preventDefault();
-        // handleSearch(e.);
         const formData = new FormData(e.target);
-        // console.log(formData.get('query'));
         searchProducts(formData.get('query'));
       }}
     >
@@ -27,7 +24,5 @@ function Searchbar() {
     </form>
   );
 }
-
-Searchbar.propTypes = {};
 
 export default Searchbar;
