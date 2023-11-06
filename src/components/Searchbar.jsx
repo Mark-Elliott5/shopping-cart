@@ -1,9 +1,7 @@
-import { useContext } from 'react';
-import { ProductsContext } from '../context/ProductsContextProvider';
-// import searchSVG from '../assets/search.svg';
+import { useNavigate } from 'react-router-dom';
 
 function Searchbar() {
-  const { searchProducts } = useContext(ProductsContext);
+  const navigate = useNavigate();
 
   return (
     <form
@@ -11,7 +9,12 @@ function Searchbar() {
       onSubmit={(e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        searchProducts(formData.get('query'));
+        const query = formData.get('query');
+        if (query === '') {
+          navigate('/');
+          return;
+        }
+        navigate(`/query/${query}`);
       }}
     >
       <input

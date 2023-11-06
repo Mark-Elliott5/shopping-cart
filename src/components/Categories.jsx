@@ -1,6 +1,7 @@
+import { v4 as uuid } from 'uuid';
 import { useContext } from 'react';
 import { ProductsContext } from '../context/ProductsContextProvider';
-import { v4 as uuid } from 'uuid';
+import { Link } from 'react-router-dom';
 
 function Categories() {
   const {
@@ -27,13 +28,15 @@ function Categories() {
           : isError
           ? errorHTML
           : categoriesWithKeys.map(({ name, key }) => (
-              <li
+              <Link
                 key={key}
-                className="category"
-                onClick={() => displayProductsInCategory(name)}
+                to={`/category/${name}`}
+                onClick={() => {
+                  displayProductsInCategory(name);
+                }}
               >
-                {name}
-              </li>
+                <li className="category">{name}</li>
+              </Link>
             ))}
       </ul>
     </div>

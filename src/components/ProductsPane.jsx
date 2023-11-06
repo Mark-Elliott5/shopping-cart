@@ -1,18 +1,26 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ProductsContext } from '../context/ProductsContextProvider';
 import { v4 as uuid } from 'uuid';
 import Product from './Product.jsx';
-import ProductPopup from './ProductPopup';
+import Categories from './Categories';
+import { useParams } from 'react-router-dom';
 
 function ProductsPane() {
   const {
-    productPaneData,
     allProductsIsLoading: isLoading,
     allProductsIsError: isError,
+    categoryProducts,
+    displayProductsInCategory,
+    displayAllProducts,
+    productPaneData,
+    searchProducts,
   } = useContext(ProductsContext);
+
+  const { name, query } = useParams();
+
   const productsWithKeys =
-    productPaneData?.map((category) => ({
-      ...category,
+    productPaneData?.map((product) => ({
+      ...product,
       key: uuid(),
     })) || [];
 
@@ -28,19 +36,31 @@ function ProductsPane() {
     </div>
   );
 
-  function handleClick(props) {
-    return <ProductPopup {...props} />;
-  }
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+    if (name) {
+      displayProductsInCategory(name);
+    } else if (query) {
+      searchProducts(query);
+    } else {
+      displayAllProducts();
+    }
+  }, [name, query, isLoading, categoryProducts]);
 
   return (
-    <div id="products-wrapper" className="content-wrapper">
-      {isLoading
-        ? loadingHTML
-        : isError
-        ? errorHTML
-        : productsWithKeys.map(({ key, ...props }) => (
-            <Product key={key} {...props} />
-          ))}
+    <div id="main">
+      <Categories />
+      <div id="products-wrapper" className="content-wrapper">
+        {isLoading
+          ? loadingHTML
+          : isError
+          ? errorHTML
+          : productsWithKeys.map(({ key, ...props }) => (
+              <Product key={key} {...props} />
+            ))}
+      </div>
     </div>
   );
 }

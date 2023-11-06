@@ -1,28 +1,31 @@
-import PropTypes from 'prop-types';
 import starSVG from '../assets/star.svg';
+import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { ProductsContext } from '../context/ProductsContextProvider';
 
-function ProductPopup({
-  description,
-  id,
-  image,
-  price,
-  rating,
-  title,
-  handleClose,
-}) {
+function ProductDetails() {
+  const { id } = useParams();
+  const { allProducts, allProductsIsLoading, allProductsIsError } =
+    useContext(ProductsContext);
+
+  if (allProductsIsLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (allProductsIsError) {
+    return <p>Error</p>;
+  }
+
+  const { description, image, price, rating, title } =
+    allProducts[parseInt(id) - 1];
+
   function addToCart() {}
   return (
-    <div
-      className="product-popup-blocker"
-      onClick={(e) => {
-        e.stopPropagation();
-        handleClose();
-      }}
-    >
-      <div className="product-popup" onClick={(e) => e.stopPropagation()}>
-        <div className="product-image-wrapper">
-          <img src={image} className="product-image" alt={title} />
-        </div>
+    <div className="product-details">
+      <div className="image-wrapper details-image-wrapper">
+        <img src={image} className="product-image" alt={title} />
+      </div>
+      <div className="details-text-wrapper">
         <span className="rating-wrapper">
           {rating.rate}
           {` `}
@@ -54,14 +57,4 @@ function ProductPopup({
   );
 }
 
-ProductPopup.propTypes = {
-  description: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  rating: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
-  handleClose: PropTypes.func.isRequired,
-};
-
-export default ProductPopup;
+export default ProductDetails;

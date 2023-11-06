@@ -1,12 +1,11 @@
-import { createContext, useEffect } from 'react';
-import { useState } from 'react';
+import Fuse from 'fuse.js';
 import PropTypes from 'prop-types';
 import {
   useAllProducts,
   useAllCategories,
   useInCategory,
 } from '../fetchFunctions';
-import Fuse from 'fuse.js';
+import { createContext, useState } from 'react';
 
 const ProductsContext = createContext();
 
@@ -30,9 +29,14 @@ function ProductsContextProvider({ children }) {
   }, {});
 
   const [productPaneData, setProductPaneData] = useState([]);
+  const [cart, setCart] = useState([]);
 
   function displayProductsInCategory(category) {
     setProductPaneData(categoryProducts[category]);
+  }
+
+  function displayAllProducts() {
+    setProductPaneData(allProducts);
   }
 
   function searchProducts(query) {
@@ -41,7 +45,7 @@ function ProductsContextProvider({ children }) {
       return;
     }
     const fuseOptions = {
-      minMatchCharLength: 2,
+      minMatchCharLength: 1,
       threshold: 0.4,
       keys: ['title', 'description'],
     };
@@ -53,24 +57,22 @@ function ProductsContextProvider({ children }) {
     setProductPaneData(products);
   }
 
-  useEffect(() => {
-    if (allProducts) {
-      setProductPaneData(allProducts);
-    }
-  }, [allProducts]);
-
   return (
     <ProductsContext.Provider
       value={{
         displayProductsInCategory,
+        displayAllProducts,
         searchProducts,
-        productPaneData,
-        allProducts,
-        allProductsIsLoading,
-        allProductsIsError,
+        setCart,
         allCategories,
         allCategoriesIsLoading,
         allCategoriesIsError,
+        allProducts,
+        allProductsIsLoading,
+        allProductsIsError,
+        cart,
+        categoryProducts,
+        productPaneData,
       }}
     >
       {children}
@@ -79,7 +81,7 @@ function ProductsContextProvider({ children }) {
 }
 
 ProductsContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export { ProductsContextProvider, ProductsContext };
