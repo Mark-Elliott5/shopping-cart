@@ -21,13 +21,22 @@ function ProductsContextProvider({ children }) {
   } = useAllCategories();
 
   const perCategoryData = useInCategory(allCategories || []);
-  const perCategoryDataArray = perCategoryData.map((result) => result.data);
-  const categoryProducts = perCategoryDataArray.reduce((obj, data, index) => {
-    obj[`${allCategories[index]}`] = data;
-    return obj;
-  }, {});
+  const perCategoryDataArray = perCategoryData.map((result) => {
+    return {
+      data: result.data,
+      isLoading: result.isLoading,
+      isError: result.isError,
+    };
+  });
+  const categoryProducts = perCategoryDataArray.reduce(
+    (obj, properties, index) => {
+      obj[`${allCategories[index]}`] = properties;
+      return obj;
+    },
+    {}
+  );
+  console.log(categoryProducts);
 
-  // const [productPaneData, setProductPaneData] = useState([]);
   const [cart, setCart] = useState([]);
 
   return (

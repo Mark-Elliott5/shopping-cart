@@ -4,13 +4,17 @@ import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 function CategoryPane() {
-  const {
-    allProductsIsLoading: isLoading,
-    allProductsIsError: isError,
-    categoryProducts,
-  } = useContext(ProductsContext);
+  const { categoryProducts } = useContext(ProductsContext);
 
   const { name } = useParams();
+
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = categoryProducts[name] !== undefined
+    ? categoryProducts[name]
+    : { data: undefined, isLoading: true, isError: undefined };
 
   const loadingHTML = (
     <div className="centered-symbol">
@@ -30,7 +34,7 @@ function CategoryPane() {
         ? loadingHTML
         : isError
         ? errorHTML
-        : categoryProducts[name].map(({ id, ...props }) => (
+        : products.map(({ id, ...props }) => (
             <Product key={id} id={id} {...props} />
           ))}
     </div>
