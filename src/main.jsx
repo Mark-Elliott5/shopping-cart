@@ -1,15 +1,15 @@
+import './index.css';
+import CategoriesAndPane from './components/CategoriesAndPane.jsx';
+import CategoryPane from './components/CategoryPane.jsx';
+import ProductDetails from './components/ProductDetails.jsx';
+import ProductsPane from './components/ProductsPane.jsx';
+import SearchPane from './components/SearchPane.jsx';
+import App from './App.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
-import ProductDetails from './components/ProductDetails.jsx';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ProductsPane from './components/ProductsPane.jsx';
 import { ProductsContextProvider } from './context/ProductsContextProvider.jsx';
-import CategoryPane from './components/CategoryPane.jsx';
-import SearchPane from './components/SearchPane.jsx';
-import CategoriesAndPane from './components/CategoriesAndPane.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const queryClient = new QueryClient({
   defaultOptions: {

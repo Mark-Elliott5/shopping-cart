@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Nunito', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
 
   /* color-scheme: light dark; */
@@ -99,6 +99,7 @@ button:focus-visible {
   margin: 0;
   cursor: pointer;
   user-select: none;
+  font-family: 'Russo One';
 }
 
 /* .search-wrapper {
@@ -151,20 +152,21 @@ input#search-bar:focus {
   padding: 0px 20px 0px 20px;
   position: sticky;
   top: 75px;
+  font-family: 'Exo 2';
 }
 #categories-wrapper ul {
   list-style-type: none;
-  padding-left: 16px;
+  padding-inline-start: 16px;
 }
 #categories-wrapper li {
   text-transform: capitalize;
   text-align: left;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 #categories-title {
   font-size: 1.5em;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 0;
 }
 
@@ -243,7 +245,7 @@ input#search-bar:focus {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 700;
+  font-weight: 600;
 }
 .product-title:hover {
   text-decoration: underline;
@@ -253,6 +255,7 @@ input#search-bar:focus {
 .price-and-button-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .product-price {

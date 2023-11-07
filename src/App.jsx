@@ -1,5 +1,5 @@
-import Searchbar from './components/Searchbar';
 import cartSVG from './assets/cart.svg';
+import Searchbar from './components/Searchbar';
 import { ProductsContext } from './context/ProductsContextProvider';
 import { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';

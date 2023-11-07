@@ -35,7 +35,6 @@ function ProductsContextProvider({ children }) {
     },
     {}
   );
-  console.log(categoryProducts);
 
   const [cart, setCart] = useState([]);
 

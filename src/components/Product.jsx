@@ -1,20 +1,17 @@
-import PropTypes from 'prop-types';
 import starSVG from '../assets/star.svg';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Product({ description, id, image, price, rating, title }) {
+function Product({ id, image, price, rating, title }) {
   return (
     <div className="product">
-      <Link
-        to={`/products/${id}`}
-        state={{ description, image, price, rating, title }}
-      >
+      <Link to={`/products/${id}`}>
         <div className="product-image-wrapper image-wrapper border-bottom">
           <img src={image} className="product-image" alt={title} />
         </div>
       </Link>
       <div className="product-info-wrapper">
-        <Link to={`/products/${id}`} state={{ test: 'test' }}>
+        <Link to={`/products/${id}`}>
           <div className="span-wrapper">
             <div className="rating-and-title-wrapper">
               <span className="rating-wrapper">
@@ -46,7 +43,6 @@ function Product({ description, id, image, price, rating, title }) {
 }
 
 Product.propTypes = {
-  description: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
