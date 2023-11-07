@@ -9,6 +9,7 @@ import ProductsPane from './components/ProductsPane.jsx';
 import { ProductsContextProvider } from './context/ProductsContextProvider.jsx';
 import CategoryPane from './components/CategoryPane.jsx';
 import SearchPane from './components/SearchPane.jsx';
+import CategoriesAndPane from './components/CategoriesAndPane.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,24 +21,28 @@ const queryClient = new QueryClient({
 
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <App />,
     children: [
       {
-        path: '/',
-        element: <ProductsPane />,
+        element: <CategoriesAndPane />,
+        children: [
+          {
+            path: '/',
+            element: <ProductsPane />,
+          },
+          {
+            path: '/category/:name',
+            element: <CategoryPane />,
+          },
+          {
+            path: '/query/:query',
+            element: <SearchPane />,
+          },
+        ],
       },
       {
         path: '/products/:id',
         element: <ProductDetails />,
-      },
-      {
-        path: '/category/:name',
-        element: <CategoryPane />,
-      },
-      {
-        path: '/query/:query',
-        element: <SearchPane />,
       },
     ],
   },

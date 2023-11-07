@@ -1,4 +1,3 @@
-import Categories from './Categories';
 import Product from './Product.jsx';
 import Fuse from 'fuse.js';
 import { ProductsContext } from '../context/ProductsContextProvider';
@@ -40,17 +39,14 @@ function SearchPane() {
   });
 
   return (
-    <div id="main">
-      <Categories />
-      <div id="products-wrapper" className="content-wrapper">
-        {isLoading
-          ? loadingHTML
-          : isError
-          ? errorHTML
-          : matchingProducts.map(({ id, ...props }) => (
-              <Product key={id} id={id} {...props} />
-            ))}
-      </div>
+    <div id="products-wrapper" className="content-wrapper">
+      {isLoading
+        ? loadingHTML
+        : isError
+        ? errorHTML
+        : matchingProducts.map(({ id, ...props }) => (
+            <Product key={id} id={id} {...props} />
+          ))}
     </div>
   );
 }

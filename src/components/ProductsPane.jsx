@@ -1,5 +1,4 @@
 import Product from './Product.jsx';
-import Categories from './Categories';
 import { ProductsContext } from '../context/ProductsContextProvider';
 import { useContext } from 'react';
 
@@ -23,17 +22,14 @@ function ProductsPane() {
   );
 
   return (
-    <div id="main">
-      <Categories />
-      <div id="products-wrapper" className="content-wrapper">
-        {isLoading
-          ? loadingHTML
-          : isError
-          ? errorHTML
-          : allProducts.map(({ id, ...props }) => (
-              <Product key={id} id={id} {...props} />
-            ))}
-      </div>
+    <div id="products-wrapper" className="content-wrapper">
+      {isLoading
+        ? loadingHTML
+        : isError
+        ? errorHTML
+        : allProducts.map(({ id, ...props }) => (
+            <Product key={id} id={id} {...props} />
+          ))}
     </div>
   );
 }
