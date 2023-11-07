@@ -11,7 +11,7 @@ function SearchPane() {
     allProducts,
   } = useContext(ProductsContext);
 
-  const { query } = useParams();
+  const { search } = useParams();
 
   const loadingHTML = (
     <div className="centered-symbol">
@@ -33,7 +33,7 @@ function SearchPane() {
   const fuse = allProducts
     ? new Fuse(allProducts, fuseOptions)
     : new Fuse([], fuseOptions);
-  const searchResults = fuse.search(query);
+  const searchResults = fuse.search(search);
   const matchingProducts = searchResults.map((result) => {
     return result.item;
   });

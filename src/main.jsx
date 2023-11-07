@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             element: <CategoryPane />,
           },
           {
-            path: '/query/:query',
+            path: '/search/:search',
             element: <SearchPane />,
           },
         ],

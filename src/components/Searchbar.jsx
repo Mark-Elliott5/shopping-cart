@@ -9,18 +9,18 @@ function Searchbar() {
       onSubmit={(e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const query = formData.get('query');
-        if (query === '') {
+        const search = formData.get('search');
+        if (search === '') {
           navigate('/');
           return;
         }
-        navigate(`/query/${query}`);
+        navigate(`/search/${search}`);
       }}
     >
       <input
         id="search-bar"
         placeholder="Search..."
-        name="query"
+        name="search"
         aria-label="Search Query"
       />
       <input type="submit" id="submit-search" />
