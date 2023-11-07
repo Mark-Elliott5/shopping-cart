@@ -7,6 +7,8 @@ import ProductDetails from './components/ProductDetails.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ProductsPane from './components/ProductsPane.jsx';
 import { ProductsContextProvider } from './context/ProductsContextProvider.jsx';
+import CategoryPane from './components/CategoryPane.jsx';
+import SearchPane from './components/SearchPane.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +20,7 @@ const queryClient = new QueryClient({
 
 const router = createBrowserRouter([
   {
+    path: '/',
     element: <App />,
     children: [
       {
@@ -30,11 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/category/:name',
-        element: <ProductsPane />,
+        element: <CategoryPane />,
       },
       {
         path: '/query/:query',
-        element: <ProductsPane />,
+        element: <SearchPane />,
       },
     ],
   },

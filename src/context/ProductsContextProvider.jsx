@@ -1,4 +1,3 @@
-import Fuse from 'fuse.js';
 import PropTypes from 'prop-types';
 import {
   useAllProducts,
@@ -21,48 +20,19 @@ function ProductsContextProvider({ children }) {
     isError: allCategoriesIsError,
   } = useAllCategories();
 
-  const dynamicData = useInCategory(allCategories || []);
-  const dataArray = dynamicData.map((result) => result.data);
-  const categoryProducts = dataArray.reduce((obj, data, index) => {
+  const perCategoryData = useInCategory(allCategories || []);
+  const perCategoryDataArray = perCategoryData.map((result) => result.data);
+  const categoryProducts = perCategoryDataArray.reduce((obj, data, index) => {
     obj[`${allCategories[index]}`] = data;
     return obj;
   }, {});
 
-  const [productPaneData, setProductPaneData] = useState([]);
+  // const [productPaneData, setProductPaneData] = useState([]);
   const [cart, setCart] = useState([]);
-
-  function displayProductsInCategory(category) {
-    setProductPaneData(categoryProducts[category]);
-  }
-
-  function displayAllProducts() {
-    setProductPaneData(allProducts);
-  }
-
-  function searchProducts(query) {
-    if (query.trim() === '') {
-      setProductPaneData(allProducts);
-      return;
-    }
-    const fuseOptions = {
-      minMatchCharLength: 1,
-      threshold: 0.4,
-      keys: ['title', 'description'],
-    };
-    const fuse = new Fuse(allProducts, fuseOptions);
-    const searchResults = fuse.search(query);
-    const products = searchResults.map((result) => {
-      return result.item;
-    });
-    setProductPaneData(products);
-  }
 
   return (
     <ProductsContext.Provider
       value={{
-        displayProductsInCategory,
-        displayAllProducts,
-        searchProducts,
         setCart,
         allCategories,
         allCategoriesIsLoading,
@@ -72,7 +42,6 @@ function ProductsContextProvider({ children }) {
         allProductsIsError,
         cart,
         categoryProducts,
-        productPaneData,
       }}
     >
       {children}

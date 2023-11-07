@@ -2,13 +2,16 @@ import Product from './Product.jsx';
 import Categories from './Categories';
 import { ProductsContext } from '../context/ProductsContextProvider';
 import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 
-function ProductsPane() {
+function CategoryPane() {
   const {
     allProductsIsLoading: isLoading,
     allProductsIsError: isError,
-    allProducts,
+    categoryProducts,
   } = useContext(ProductsContext);
+
+  const { name } = useParams();
 
   const loadingHTML = (
     <div className="centered-symbol">
@@ -30,7 +33,7 @@ function ProductsPane() {
           ? loadingHTML
           : isError
           ? errorHTML
-          : allProducts.map(({ id, ...props }) => (
+          : categoryProducts[name].map(({ id, ...props }) => (
               <Product key={id} id={id} {...props} />
             ))}
       </div>
@@ -38,4 +41,4 @@ function ProductsPane() {
   );
 }
 
-export default ProductsPane;
+export default CategoryPane;

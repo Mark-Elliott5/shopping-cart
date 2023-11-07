@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 import { useContext } from 'react';
 import { ProductsContext } from '../context/ProductsContextProvider';
 import { Link } from 'react-router-dom';
@@ -8,13 +7,7 @@ function Categories() {
     allCategories,
     allCategoriesIsLoading: isLoading,
     allCategoriesIsError: isError,
-    displayProductsInCategory,
   } = useContext(ProductsContext);
-  const categoriesWithKeys =
-    allCategories?.map((category) => ({
-      name: category,
-      key: uuid(),
-    })) || [];
 
   const loadingHTML = <p>Loading...</p>;
   const errorHTML = <p>Error!</p>;
@@ -27,15 +20,9 @@ function Categories() {
           ? loadingHTML
           : isError
           ? errorHTML
-          : categoriesWithKeys.map(({ name, key }) => (
-              <Link
-                key={key}
-                to={`/category/${name}`}
-                onClick={() => {
-                  displayProductsInCategory(name);
-                }}
-              >
-                <li className="category">{name}</li>
+          : allCategories.map((category) => (
+              <Link key={category} to={`/category/${category}`}>
+                <li className="category">{category}</li>
               </Link>
             ))}
       </ul>
