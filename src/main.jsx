@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom/client';
 import { ProductsContextProvider } from './context/ProductsContextProvider.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ShoppingCart from './components/ShoppingCart';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: '/products/:id',
         element: <ProductDetails />,
+      },
+      {
+        path: '/cart',
+        element: <ShoppingCart />,
       },
     ],
   },

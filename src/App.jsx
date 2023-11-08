@@ -14,7 +14,9 @@ function App() {
           <span id="logo-home">azul</span>
         </Link>
         <Searchbar />
-        <img src={cartSVG} id="cart-icon" alt="cart-icon" />
+        <Link to="/cart">
+          <img src={cartSVG} id="cart-icon" alt="cart-icon" />
+        </Link>
       </nav>
       <Outlet />
     </>
