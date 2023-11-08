@@ -1,4 +1,5 @@
 import starSVG from '../assets/star.svg';
+import AddToCartButton from './AddToCartButton';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -35,7 +36,7 @@ function Product({ handleAdd, id, image, price, rating, title }) {
         </Link>
         <div className="price-and-button-wrapper">
           <span className="product-price">${price.toFixed(2)}</span>
-          <button onClick={() => handleAdd(id)}>Add to cart</button>
+          <AddToCartButton handleAdd={handleAdd} productNumber={id} />
         </div>
       </div>
     </div>

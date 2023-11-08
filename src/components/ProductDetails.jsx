@@ -2,6 +2,7 @@ import starSVG from '../assets/star.svg';
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { ProductsContext } from '../context/ProductsContextProvider';
+import AddToCartButton from './AddToCartButton';
 
 function ProductDetails() {
   const { id } = useParams();
@@ -47,7 +48,10 @@ function ProductDetails() {
         <span className="product-title">{title}</span>
         <span className="product-price">${price.toFixed(2)}</span>
         <p className="description">{description}</p>
-        <button onClick={() => addItemToCart(id)}>Add to cart</button>
+        <AddToCartButton
+          handleAdd={addItemToCart}
+          productNumber={parseInt(id)}
+        />
       </div>
     </div>
   );
