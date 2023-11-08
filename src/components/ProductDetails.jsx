@@ -5,8 +5,12 @@ import { ProductsContext } from '../context/ProductsContextProvider';
 
 function ProductDetails() {
   const { id } = useParams();
-  const { allProducts, allProductsIsLoading, allProductsIsError } =
-    useContext(ProductsContext);
+  const {
+    allProducts,
+    allProductsIsLoading,
+    allProductsIsError,
+    addItemToCart,
+  } = useContext(ProductsContext);
 
   if (allProductsIsLoading) {
     return <p>Loading...</p>;
@@ -19,7 +23,6 @@ function ProductDetails() {
   const { description, image, price, rating, title } =
     allProducts[parseInt(id) - 1];
 
-  function addToCart() {}
   return (
     <div className="product-details">
       <div className="image-wrapper details-image-wrapper">
@@ -44,14 +47,7 @@ function ProductDetails() {
         <span className="product-title">{title}</span>
         <span className="product-price">${price.toFixed(2)}</span>
         <p className="description">{description}</p>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            addToCart(id);
-          }}
-        >
-          Add to cart
-        </button>
+        <button onClick={() => addItemToCart(id)}>Add to cart</button>
       </div>
     </div>
   );

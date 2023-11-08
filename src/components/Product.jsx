@@ -2,7 +2,7 @@ import starSVG from '../assets/star.svg';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Product({ id, image, price, rating, title }) {
+function Product({ handleAdd, id, image, price, rating, title }) {
   return (
     <div className="product">
       <Link to={`/products/${id}`}>
@@ -35,7 +35,7 @@ function Product({ id, image, price, rating, title }) {
         </Link>
         <div className="price-and-button-wrapper">
           <span className="product-price">${price.toFixed(2)}</span>
-          <button onClick={(e) => e.stopPropagation()}>Add to cart</button>
+          <button onClick={() => handleAdd(id)}>Add to cart</button>
         </div>
       </div>
     </div>
@@ -43,6 +43,7 @@ function Product({ id, image, price, rating, title }) {
 }
 
 Product.propTypes = {
+  handleAdd: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

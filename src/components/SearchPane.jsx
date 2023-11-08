@@ -9,6 +9,7 @@ function SearchPane() {
     allProductsIsLoading: isLoading,
     allProductsIsError: isError,
     allProducts,
+    addItemToCart,
   } = useContext(ProductsContext);
 
   const { search } = useParams();
@@ -45,7 +46,7 @@ function SearchPane() {
         : isError
         ? errorHTML
         : matchingProducts.map(({ id, ...props }) => (
-            <Product key={id} id={id} {...props} />
+            <Product key={id} id={id} handleAdd={addItemToCart} {...props} />
           ))}
     </div>
   );

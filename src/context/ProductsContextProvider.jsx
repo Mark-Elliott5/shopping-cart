@@ -36,12 +36,54 @@ function ProductsContextProvider({ children }) {
     {}
   );
 
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
+
+  // example cart:
+  // const cartExample = {
+  //   1: {
+  //     id: 1,
+  //     image: 'imageURL',
+  //     price: 29.99,
+  //     title: 'Shirt',
+  //     quantity: 2,
+  //   },
+  //   2: {
+  //     id: 2,
+  //     image: 'imageURL2',
+  //     price: 9.99,
+  //     title: 'Pants',
+  //     quantity: 1,
+  //   },
+  // };
+
+  function addItemToCart(id) {
+    let newItem;
+    if (!cart[id]) {
+      newItem = { ...allProducts[id - 1], quantity: 1 };
+    } else {
+      newItem = {
+        ...cart[id],
+        quantity: cart[id]['quantity'] + 1,
+      };
+    }
+    setCart({ ...cart, [id]: newItem });
+  }
+
+  function removeItemFromCart(id) {
+    const newItem = { ...cart[id], quantity: cart[id]['quantity'] - 1 };
+    if (newItem['quantity'] !== 0) {
+      setCart({ ...cart, [id]: newItem });
+      return;
+    }
+    delete cart[id];
+    setCart({ ...cart });
+  }
 
   return (
     <ProductsContext.Provider
       value={{
-        setCart,
+        addItemToCart,
+        removeItemFromCart,
         allCategories,
         allCategoriesIsLoading,
         allCategoriesIsError,

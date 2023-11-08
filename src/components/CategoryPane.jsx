@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 function CategoryPane() {
-  const { categoryProducts } = useContext(ProductsContext);
+  const { categoryProducts, addItemToCart } = useContext(ProductsContext);
 
   const { name } = useParams();
 
@@ -35,7 +35,7 @@ function CategoryPane() {
         : isError
         ? errorHTML
         : products.map(({ id, ...props }) => (
-            <Product key={id} id={id} {...props} />
+            <Product key={id} id={id} handleAdd={addItemToCart} {...props} />
           ))}
     </div>
   );
