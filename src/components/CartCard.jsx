@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function CartCard({
   id,
@@ -10,12 +11,14 @@ function CartCard({
   handleAdd,
 }) {
   return (
-    <div className="product-details cart-card">
+    <div className="cart-card">
       <div className="image-wrapper cart-card-image">
         <img className="product-image" src={image} alt={title} />
       </div>
       <div className="cart-card-details">
-        <span className="cart-card-title product-title">{title}</span>
+        <Link to={`/products/${id}`}>
+          <span className="cart-card-title product-title">{title}</span>
+        </Link>
         <span className="cart-card-price">${price.toFixed(2)}</span>
       </div>
       <div className="cart-card-quantity">

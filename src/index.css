@@ -87,10 +87,21 @@ button:focus-visible {
   background-color: var(--background-color);
   height: 75px;
 }
+#nav-search a {
+  width: 15%;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.nav-link {
+  width: 15%;
+}
 
 #logo-home {
   font-weight: bold;
-  font-size: 4em;
+  font-size: 7vmin;
   margin: 0;
   cursor: pointer;
   user-select: none;
@@ -111,10 +122,10 @@ button:focus-visible {
 #search-form {
   width: 100%;
   text-align: center;
+  flex: 1;
 }
 
 #search-bar {
-  flex: 0 1 100%;
   background-color: #e2e8f0;
   border-radius: 16px;
   width: 50%;
@@ -148,6 +159,7 @@ input#search-bar:focus {
   position: sticky;
   top: 75px;
   font-family: 'Exo 2';
+  background-color: var(--background-color);
 }
 #categories-wrapper ul {
   list-style-type: none;
@@ -178,7 +190,6 @@ input#search-bar:focus {
   column-gap: 2%;
   row-gap: 2%;
   width: -moz-available;
-  width: 80%;
 }
 
 .product {
@@ -208,7 +219,6 @@ input#search-bar:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   background-color: var(--background-color);
   padding: 6px;
 }
@@ -304,20 +314,26 @@ input#search-bar:focus {
   color: black;
 }
 
+#shopping-cart * {
+  color: black;
+}
+
 #cart-cards-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
 .cart-card {
-  width: 70%;
+  width: 100%;
   justify-content: space-between;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
-.cart-card > * {
+/* .cart-card > * {
   width: 300px;
-}
+} */
 
 .cart-card-image {
   max-height: 166px;
@@ -331,10 +347,17 @@ input#search-bar:focus {
 }
 
 .cart-card-quantity {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+}
+.cart-card-quantity > * {
+  margin: 0px 2px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* .product-popup-blocker {
@@ -375,3 +398,28 @@ input#search-bar:focus {
     background-color: #f9f9f9;
   }
 } */
+
+@media (max-width: 730px) {
+  #products-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  /* #cart-cards-wrapper {
+    align-items: unset;
+  } */
+
+  #categories-and-pane {
+    flex-direction: column;
+  }
+
+  #categories-wrapper {
+    width: 100%;
+  }
+
+  #products-wrapper {
+    width: 100%;
+  }
+
+}

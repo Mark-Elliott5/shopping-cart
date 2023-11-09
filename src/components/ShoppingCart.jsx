@@ -23,7 +23,7 @@ function ShoppingCart() {
     return cards;
   })();
 
-  const emptyCart = <p>Your cart is empty</p>;
+  const emptyCart = <p className="center">Your cart is empty</p>;
 
   return (
     <div id="shopping-cart">

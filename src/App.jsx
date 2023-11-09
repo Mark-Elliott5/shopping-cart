@@ -10,11 +10,16 @@ function App() {
   return (
     <>
       <nav id="nav-search">
-        <Link to="/" onClick={displayAllProducts} onChange={displayAllProducts}>
+        <Link
+          to="/"
+          className="nav-link"
+          onClick={displayAllProducts}
+          onChange={displayAllProducts}
+        >
           <span id="logo-home">azul</span>
         </Link>
         <Searchbar />
-        <Link to="/cart">
+        <Link className="align-right" to="/cart">
           <img src={cartSVG} id="cart-icon" alt="cart-icon" />
         </Link>
       </nav>
