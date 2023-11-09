@@ -10,16 +10,17 @@ function CartCard({
   handleAdd,
 }) {
   return (
-    <div className="cart-card">
-      <div className="cart-card-image-wrapper">
-        <img src={image} alt={title} />
+    <div className="product-details cart-card">
+      <div className="image-wrapper cart-card-image">
+        <img className="product-image" src={image} alt={title} />
       </div>
       <div className="cart-card-details">
         <span className="cart-card-title product-title">{title}</span>
-        <span className="cart-card-price">{price}</span>
+        <span className="cart-card-price">${price.toFixed(2)}</span>
       </div>
       <div className="cart-card-quantity">
         <button
+          className="cart-button"
           onClick={() => {
             handleRemove(id);
           }}
@@ -28,6 +29,7 @@ function CartCard({
         </button>
         <span>{quantity}</span>
         <button
+          className="cart-button"
           onClick={() => {
             handleAdd(id);
           }}

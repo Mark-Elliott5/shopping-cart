@@ -14,6 +14,7 @@ function AddToCartButton({ handleAdd, productNumber }) {
 
   return (
     <button
+      className="add-button"
       onClick={() => {
         changeButtonText();
         handleAdd(productNumber);

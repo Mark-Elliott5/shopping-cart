@@ -1,8 +1,8 @@
-import starSVG from '../assets/star.svg';
+import AddToCartButton from './AddToCartButton';
+import StarMeter from './StarMeter';
+import { ProductsContext } from '../context/ProductsContextProvider';
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
-import { ProductsContext } from '../context/ProductsContextProvider';
-import AddToCartButton from './AddToCartButton';
 
 function ProductDetails() {
   const { id } = useParams();
@@ -25,26 +25,12 @@ function ProductDetails() {
     allProducts[parseInt(id) - 1];
 
   return (
-    <div className="product-details">
+    <div className="product-details all-products">
       <div className="image-wrapper details-image-wrapper">
         <img src={image} className="product-image" alt={title} />
       </div>
       <div className="details-text-wrapper">
-        <span className="rating-wrapper">
-          {rating.rate}
-          {` `}
-          <span
-            className="star-meter"
-            style={{ width: `calc((${rating.rate}/5)*55.975px)` }}
-          >
-            <img src={starSVG} className="star" alt="star" />
-            <img src={starSVG} className="star" alt="star" />
-            <img src={starSVG} className="star" alt="star" />
-            <img src={starSVG} className="star" alt="star" />
-            <img src={starSVG} className="star" alt="star" />
-          </span>
-          {` `}({rating.count})
-        </span>
+        <StarMeter {...rating} />
         <span className="product-title">{title}</span>
         <span className="product-price">${price.toFixed(2)}</span>
         <p className="description">{description}</p>

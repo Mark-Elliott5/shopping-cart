@@ -1,5 +1,5 @@
-import starSVG from '../assets/star.svg';
 import AddToCartButton from './AddToCartButton';
+import StarMeter from './StarMeter';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -15,21 +15,7 @@ function Product({ handleAdd, id, image, price, rating, title }) {
         <Link to={`/products/${id}`}>
           <div className="span-wrapper">
             <div className="rating-and-title-wrapper">
-              <span className="rating-wrapper">
-                {rating.rate}
-                {` `}
-                <span
-                  className="star-meter"
-                  style={{ width: `calc((${rating.rate}/5)*60px)` }}
-                >
-                  <img src={starSVG} className="star" alt="star" />
-                  <img src={starSVG} className="star" alt="star" />
-                  <img src={starSVG} className="star" alt="star" />
-                  <img src={starSVG} className="star" alt="star" />
-                  <img src={starSVG} className="star" alt="star" />
-                </span>
-                {` `}({rating.count})
-              </span>
+              <StarMeter {...rating} />
               <span className="product-title">{title}</span>
             </div>
           </div>
