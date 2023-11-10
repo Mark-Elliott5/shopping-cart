@@ -52,10 +52,10 @@ button {
 button:hover {
   border-color: var(--primary-color);
 }
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto var(--primary-color);
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -314,14 +314,24 @@ input#search-bar:focus {
   color: black;
 }
 
+#shopping-cart {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
 #shopping-cart * {
   color: black;
 }
 
+#costs {
+  padding: 21px 42px
+}
+
 #cart-cards-wrapper {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 12px; */
+  width: 70%;
 }
 
 .cart-card {
@@ -330,6 +340,7 @@ input#search-bar:focus {
   align-items: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
 }
 /* .cart-card > * {
   width: 300px;
@@ -339,15 +350,18 @@ input#search-bar:focus {
   max-height: 166px;
   object-fit: contain;
   aspect-ratio: 1;
+  justify-self: flex-end;
 }
 
 .cart-card-details {
-  text-align: center;
   text-wrap: balance;
+  width: 80%;
+  justify-self: center;
 }
 
 .cart-card-quantity {
   text-align: center;
+  justify-self: flex-start;
 }
 .cart-card-quantity > * {
   margin: 0px 2px;
@@ -358,6 +372,14 @@ input#search-bar:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#price-box {
+  border: 1px solid var(--outline);
+  border-radius: 12px;
+  padding: 12px;
+  position: sticky;
+  top: 75px;
 }
 
 /* .product-popup-blocker {
@@ -385,6 +407,14 @@ input#search-bar:focus {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+details {
+  cursor: pointer;
+}
+
+details > summary:first-of-type {
+  list-style-type: none;
 }
 /* 
 @media (prefers-color-scheme: dark) {
@@ -416,10 +446,43 @@ input#search-bar:focus {
 
   #categories-wrapper {
     width: 100%;
+    padding-bottom: 14px;
   }
 
   #products-wrapper {
     width: 100%;
+  }
+
+  .product-details {
+    flex-direction: column;
+  }
+
+  .details-image-wrapper {
+    width: auto;
+    height: auto;
+    margin: 4px;
+  }
+
+  .details-text-wrapper {
+    padding: 12px;
+      width: auto;
+      height: auto;
+  }
+
+  #cart-cards-wrapper {
+    width: 100%;
+  }
+
+  #shopping-cart {
+    display: block;
+  }
+
+  details[open] > summary:first-of-type {
+    list-style-type: disclosure-open;
+  }
+
+  details > summary:first-of-type {
+    list-style-type: disclosure-closed;
   }
 
 }

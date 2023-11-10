@@ -69,6 +69,10 @@ function ProductsContextProvider({ children }) {
     setCart({ ...cart, [id]: newItem });
   }
 
+  function purchaseItems() {
+    setCart({});
+  }
+
   function removeItemFromCart(id) {
     const newItem = { ...cart[id], quantity: cart[id]['quantity'] - 1 };
     if (newItem['quantity'] !== 0) {
@@ -83,6 +87,7 @@ function ProductsContextProvider({ children }) {
     <ProductsContext.Provider
       value={{
         addItemToCart,
+        purchaseItems,
         removeItemFromCart,
         allCategories,
         allCategoriesIsLoading,

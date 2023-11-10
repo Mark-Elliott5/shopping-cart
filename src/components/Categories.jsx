@@ -14,18 +14,20 @@ function Categories() {
 
   return (
     <div id="categories-wrapper" className="content-wrapper">
-      <p id="categories-title">Categories</p>
-      <ul id="categories">
-        {isLoading
-          ? loadingHTML
-          : isError
-          ? errorHTML
-          : allCategories.map((category) => (
-              <Link key={category} to={`/category/${category}`}>
-                <li className="category">{category}</li>
-              </Link>
-            ))}
-      </ul>
+      <details open>
+        <summary id="categories-title">Categories</summary>
+        <ul id="categories">
+          {isLoading
+            ? loadingHTML
+            : isError
+            ? errorHTML
+            : allCategories.map((category) => (
+                <Link key={category} to={`/category/${category}`}>
+                  <li className="category">{category}</li>
+                </Link>
+              ))}
+        </ul>
+      </details>
     </div>
   );
 }
