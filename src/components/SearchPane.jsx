@@ -1,5 +1,6 @@
 import Product from './Product.jsx';
 import Fuse from 'fuse.js';
+import { mirage } from 'ldrs';
 import { ProductsContext } from '../context/ProductsContextProvider';
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
@@ -14,17 +15,21 @@ function SearchPane() {
 
   const { search } = useParams();
 
+  mirage.register();
+
   const loadingHTML = (
-    <div className="centered-symbol">
-      <p>Loading...</p>
+    <div className="center">
+      <l-mirage size="100" speed="2.5" color="#209cff"></l-mirage>
     </div>
   );
 
-  const errorHTML = (
-    <div className="centered-symbol">
-      <p>Error!</p>
-    </div>
-  );
+  if (isLoading) {
+    return loadingHTML;
+  }
+
+  if (isError) {
+    return <p>Error</p>;
+  }
 
   const fuseOptions = {
     minMatchCharLength: 1,
@@ -41,13 +46,9 @@ function SearchPane() {
 
   return (
     <div id="products-wrapper" className="content-wrapper">
-      {isLoading
-        ? loadingHTML
-        : isError
-        ? errorHTML
-        : matchingProducts.map(({ id, ...props }) => (
-            <Product key={id} id={id} handleAdd={addItemToCart} {...props} />
-          ))}
+      {matchingProducts.map(({ id, ...props }) => (
+        <Product key={id} id={id} handleAdd={addItemToCart} {...props} />
+      ))}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import AddToCartButton from './AddToCartButton';
 import StarMeter from './StarMeter';
+import { mirage } from 'ldrs';
 import { ProductsContext } from '../context/ProductsContextProvider';
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
@@ -8,16 +9,24 @@ function ProductDetails() {
   const { id } = useParams();
   const {
     allProducts,
-    allProductsIsLoading,
-    allProductsIsError,
+    allProductsIsLoading: isLoading,
+    allProductsIsError: isError,
     addItemToCart,
   } = useContext(ProductsContext);
 
-  if (allProductsIsLoading) {
-    return <p>Loading...</p>;
+  mirage.register();
+
+  const loadingHTML = (
+    <div className="center">
+      <l-mirage size="100" speed="2.5" color="#209cff"></l-mirage>
+    </div>
+  );
+
+  if (isLoading) {
+    return loadingHTML;
   }
 
-  if (allProductsIsError) {
+  if (isError) {
     return <p>Error</p>;
   }
 

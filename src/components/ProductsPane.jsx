@@ -1,4 +1,5 @@
 import Product from './Product.jsx';
+import { mirage } from 'ldrs';
 import { ProductsContext } from '../context/ProductsContextProvider';
 import { useContext } from 'react';
 
@@ -10,9 +11,11 @@ function ProductsPane() {
     addItemToCart,
   } = useContext(ProductsContext);
 
+  mirage.register();
+
   const loadingHTML = (
-    <div className="centered-symbol">
-      <p>Loading...</p>
+    <div className="center">
+      <l-mirage size="100" speed="2.5" color="#209cff"></l-mirage>
     </div>
   );
 
