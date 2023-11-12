@@ -45,22 +45,18 @@ button {
 button:hover {
   border-color: var(--primary-color);
 }
-/* button:focus,
-button:focus-visible {
-  outline: 4px auto var(--primary-color);
-} */
+
+.added-to-cart {
+  background-color: var(--primary-color);
+  color: white;
+}
+.added-to-cart:hover {
+  border-color: var(--primary-color);
+}
 
 * {
   box-sizing: border-box;
   color: var(--primary-color);
-}
-
-#root {
-  /* margin: 0px 20px 20px 20px;
-  padding: 0; */
-  /* height: 100%;
-  height: 100vh;
-  height: 100dvh; */
 }
 
 #categories-and-pane {
@@ -68,7 +64,6 @@ button:focus-visible {
   justify-content: space-evenly;
   align-items: flex-start;
   gap: 8%;
-  /* margin: 0; */
   margin: 20px;
 }
 
@@ -118,13 +113,6 @@ nav {
   font-family: 'Russo One';
 }
 
-/* .search-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex: 2;
-} */
-
 .search-wrapper img {
   width: 24px;
 }
@@ -163,8 +151,6 @@ input#search-bar:focus {
 }
 
 #categories-wrapper {
-  /* border: 1px solid var(--outline);
-  border-radius: 12px; */
   padding: 0px 20px 0px 20px;
   position: sticky;
   top: 99px;
@@ -339,9 +325,6 @@ input#search-bar:focus {
 }
 
 #cart-cards-wrapper {
-  /* display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px; */
   width: 70%;
 }
 
@@ -353,9 +336,6 @@ input#search-bar:focus {
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
 }
-/* .cart-card > * {
-  width: 300px;
-} */
 
 .cart-card-image {
   max-height: 166px;
@@ -393,29 +373,6 @@ input#search-bar:focus {
   top: 93px;
 }
 
-/* .product-popup-blocker {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: blur(1px);
-}
-
-.product-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 500px;
-  background-color: #213547;
-  padding: 20px;
-} */
-
 .capitalize {
   text-transform: capitalize;
 }
@@ -427,24 +384,8 @@ details {
 details > summary:first-of-type {
   list-style-type: none;
 }
-/* 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: #545454;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
 
 @media (max-width: 730px) {
-  /* #cart-cards-wrapper {
-    align-items: unset;
-  } */
-
   #categories-and-pane {
     flex-direction: column;
     margin: 0px 20px;

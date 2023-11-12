@@ -7,16 +7,20 @@ function AddToCartButton({ handleAdd, productNumber }) {
 
   const [buttonText, setBaggedText] = useState(addToCart);
 
-  function changeButtonText() {
+  function changeButtonText(e) {
+    e.target.classList.add('added-to-cart');
     setBaggedText(added);
-    setTimeout(() => setBaggedText(addToCart), 5000);
+    setTimeout(() => {
+      e.target.classList.remove('added-to-cart');
+      setBaggedText(addToCart);
+    }, 5000);
   }
 
   return (
     <button
       className="add-button"
-      onClick={() => {
-        changeButtonText();
+      onClick={(e) => {
+        changeButtonText(e);
         handleAdd(productNumber);
       }}
     >

@@ -21,7 +21,7 @@ function CategoryPane() {
 
   const loadingHTML = (
     <div className="center">
-      <l-mirage size="100" speed="2.5" color="#209cff"></l-mirage>
+      <l-mirage size="200" speed="2.5" color="#209cff"></l-mirage>
     </div>
   );
 
