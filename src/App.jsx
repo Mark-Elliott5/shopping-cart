@@ -1,4 +1,4 @@
-import cartSVG from './assets/cart.svg';
+import CartLink from './components/CartLink';
 import ProgressBar from './components/ProgressBar';
 import Searchbar from './components/Searchbar';
 import { Link, Outlet } from 'react-router-dom';
@@ -12,9 +12,7 @@ function App() {
             <span id="logo-home">azul</span>
           </Link>
           <Searchbar />
-          <Link className="align-right" to="/cart">
-            <img src={cartSVG} id="cart-icon" alt="cart-icon" />
-          </Link>
+          <CartLink />
         </div>
         <ProgressBar />
       </nav>
