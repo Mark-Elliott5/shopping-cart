@@ -195,7 +195,9 @@ input#search-bar:focus {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 2%;
   row-gap: 2%;
-  width: -moz-available;
+  width: -moz-available;  
+  width: -webkit-fill-available;
+  width: fill-available;
 }
 
 .product {
